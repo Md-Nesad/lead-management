@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 import { deleteLead, getLeads, updateLead } from "../../../shared/utils/api";
+import Loading from "../../../shared/components/Loading";
 
 function daysLeft(date: string) {
   if (!date) return "-";
@@ -40,12 +41,16 @@ function getDaysStyle(days: number | string) {
 export default function LeadTable() {
   const [search, setSearch] = useState("");
   const [leads, setLeads] = useState([]);
+  console.log(leads);
   const [statusFilter, setStatusFilter] = useState("All");
   const [stageFilter, setStageFilter] = useState("All");
+  const [loading, setLoading] = useState(false);
 
   async function fetchLeads() {
+    setLoading(true);
     const data = await getLeads();
     setLeads(data);
+    setLoading(false);
   }
 
   // ---------------- ACTIONS ----------------
@@ -95,6 +100,8 @@ export default function LeadTable() {
   useEffect(() => {
     fetchLeads();
   }, []);
+
+  if (loading) return <Loading />;
 
   // ---------------- UI ----------------
   return (
@@ -159,6 +166,7 @@ export default function LeadTable() {
               <th className="px-4 py-3 text-left">Email</th>
               <th className="px-4 py-3 text-left">Website</th>
               <th className="px-4 py-3 text-left">LinkedIn</th>
+              <th className="px-4 py-3 text-left">Location</th>
               <th className="px-4 py-3 text-left">Status</th>
               <th className="px-4 py-3 text-left">Follow-up</th>
               <th className="px-4 py-3 text-left">Days Left</th>
@@ -203,6 +211,8 @@ export default function LeadTable() {
                       View Profile
                     </Link>
                   </td>
+
+                  <td className="px-4 py-3 text-blue-600">{lead.country}</td>
 
                   <td className="px-4 py-3">
                     <span

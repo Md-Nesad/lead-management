@@ -11,6 +11,7 @@ export default function AddLead() {
     email: "",
     website: "",
     linkedin: "",
+    country: "",
   });
 
   function handleChange(e: any) {
@@ -112,16 +113,13 @@ export default function AddLead() {
               </select>
             </div>
 
-            {/* Email */}
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">
-                Email
+                Location
               </label>
 
-              <input
-                name="email"
-                type="email"
-                placeholder="Enter email address"
+              <select
+                name="country"
                 onChange={handleChange}
                 required
                 className="
@@ -134,8 +132,43 @@ export default function AddLead() {
                   focus:ring-2
                   focus:ring-indigo-500
                 "
-              />
+              >
+                <option value="">Select</option>
+
+                <option value="USA">USA</option>
+
+                <option value="UK">UK</option>
+
+                <option value="Canada">Canada</option>
+
+                <option value="Australia">Australia</option>
+              </select>
             </div>
+          </div>
+
+          {/* Email */}
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-1">
+              Email
+            </label>
+
+            <input
+              name="email"
+              type="email"
+              placeholder="Enter email address"
+              onChange={handleChange}
+              required
+              className="
+                  w-full
+                  px-3 py-2
+                  border border-gray-200
+                  rounded-xl
+                  text-sm
+                  focus:outline-none
+                  focus:ring-2
+                  focus:ring-indigo-500
+                "
+            />
           </div>
 
           {/* Website */}

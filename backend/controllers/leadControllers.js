@@ -4,6 +4,7 @@ const addDays = require("../utils/addDays");
 /* Create Lead */
 
 exports.createLead = async (req, res) => {
+  console.log(req.body);
   try {
     const lead = await Lead.create(req.body);
 
