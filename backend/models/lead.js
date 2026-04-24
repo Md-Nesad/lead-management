@@ -7,6 +7,7 @@ const LeadSchema = new mongoose.Schema({
   website: String,
   linkedin: String,
   country: String,
+  name: String,
 
   status: {
     type: String,

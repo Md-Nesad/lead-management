@@ -12,6 +12,7 @@ export default function AddLead() {
     website: "",
     linkedin: "",
     country: "",
+    name: "",
   });
 
   function handleChange(e: any) {
@@ -55,17 +56,19 @@ export default function AddLead() {
         {/* Form */}
         <form onSubmit={handleSubmit} className="space-y-5">
           {/* Agency */}
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">
-              Agency Name
-            </label>
 
-            <input
-              name="agency"
-              placeholder="Enter agency name"
-              onChange={handleChange}
-              required
-              className="
+          <div className="grid md:grid-cols-2 gap-4">
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-1">
+                Agency Name
+              </label>
+
+              <input
+                name="agency"
+                placeholder="Enter agency name"
+                onChange={handleChange}
+                required
+                className="
                 w-full
                 px-3 py-2
                 border border-gray-200
@@ -75,7 +78,31 @@ export default function AddLead() {
                 focus:ring-2
                 focus:ring-indigo-500
               "
-            />
+              />
+            </div>
+
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-1">
+                Lead Name
+              </label>
+
+              <input
+                name="name"
+                placeholder="Enter Lead name"
+                onChange={handleChange}
+                required
+                className="
+                w-full
+                px-3 py-2
+                border border-gray-200
+                rounded-xl
+                text-sm
+                focus:outline-none
+                focus:ring-2
+                focus:ring-indigo-500
+              "
+              />
+            </div>
           </div>
 
           {/* Type + Email Grid */}

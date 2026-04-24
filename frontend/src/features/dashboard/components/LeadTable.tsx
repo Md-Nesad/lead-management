@@ -2,6 +2,7 @@ import { useEffect, useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 import { deleteLead, getLeads, updateLead } from "../../../shared/utils/api";
 import Loading from "../../../shared/components/Loading";
+import { ArrowRight, Trash2 } from "lucide-react";
 
 function daysLeft(date: string) {
   if (!date) return "-";
@@ -166,7 +167,7 @@ export default function LeadTable() {
               <th className="px-4 py-3 text-left">Email</th>
               <th className="px-4 py-3 text-left">Website</th>
               <th className="px-4 py-3 text-left">LinkedIn</th>
-              <th className="px-4 py-3 text-left">Location</th>
+
               <th className="px-4 py-3 text-left">Status</th>
               <th className="px-4 py-3 text-left">Follow-up</th>
               <th className="px-4 py-3 text-left">Days Left</th>
@@ -204,15 +205,13 @@ export default function LeadTable() {
 
                   <td className="px-4 py-3 text-indigo-600">
                     <Link
-                      to={lead.linkedIn}
+                      to={lead.linkedin}
                       target="_blank"
                       rel="noopener noreferrer"
                     >
                       View Profile
                     </Link>
                   </td>
-
-                  <td className="px-4 py-3 text-blue-600">{lead.country}</td>
 
                   <td className="px-4 py-3">
                     <span
@@ -235,17 +234,19 @@ export default function LeadTable() {
                   <td className="px-4 py-3">
                     <div className="flex justify-center gap-2">
                       <button
+                        title="next step"
                         onClick={() => handleAction(lead)}
                         className="bg-indigo-600 hover:bg-indigo-700 text-white px-3 py-1 rounded-lg text-xs"
                       >
-                        Next Step
+                        <ArrowRight className="w-4 h-4" />
                       </button>
 
                       <button
+                        title="delete"
                         onClick={() => handleDelete(lead._id)}
                         className="bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded-lg text-xs"
                       >
-                        Delete
+                        <Trash2 className="w-4 h-4" />
                       </button>
                     </div>
                   </td>
