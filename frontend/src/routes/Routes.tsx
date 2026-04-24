@@ -3,6 +3,9 @@ import LandingPage from "../pages/LandingPage";
 import Login from "../pages/Login";
 import Signup from "../pages/SignUp";
 import Dashboard from "../pages/Dashboard";
+import AddLead from "../pages/AddLeads";
+import DashboardLayout from "../layout/DashboardLayout";
+import LeadLists from "../pages/LeadLists";
 
 export default function AppRoutes() {
   return (
@@ -10,11 +13,15 @@ export default function AppRoutes() {
       <Routes>
         <Route path="/" element={<LandingPage />} />
         <Route index element={<LandingPage />} />
-        {/* later: add auth routes */}
+        {/* auth routes */}
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
-        {/* later: add dashboard route */}
-        <Route path="/dashboard" element={<Dashboard />} />
+        {/* dashboard route */}
+        <Route element={<DashboardLayout />}>
+          <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/leads" element={<LeadLists />} />
+          <Route path="/add-lead" element={<AddLead />} />
+        </Route>
       </Routes>
     </BrowserRouter>
   );
