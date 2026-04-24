@@ -27,22 +27,9 @@ function getStatusStyle(status: string) {
   }
 }
 
-function getDaysStyle(days: number | string) {
-  if (days === "-") return "text-gray-400";
-
-  if (typeof days === "number") {
-    if (days <= 1) return "text-red-500 font-semibold";
-    if (days <= 3) return "text-yellow-500 font-semibold";
-    return "text-green-600 font-semibold";
-  }
-
-  return "";
-}
-
 export default function LeadTable() {
   const [search, setSearch] = useState("");
   const [leads, setLeads] = useState([]);
-  console.log(leads);
   const [statusFilter, setStatusFilter] = useState("All");
   const [stageFilter, setStageFilter] = useState("All");
   const [loading, setLoading] = useState(false);
@@ -106,7 +93,7 @@ export default function LeadTable() {
 
   // ---------------- UI ----------------
   return (
-    <div className="bg-white rounded-2xl shadow-lg border border-gray-100 p-6">
+    <div className="bg-white rounded-2xl shadow-lg border border-gray-100 p-3">
       {/* HEADER */}
       <div className="flex flex-col lg:flex-row lg:justify-between lg:items-center gap-3 mb-4">
         <div>
@@ -163,6 +150,7 @@ export default function LeadTable() {
           <thead className="bg-gray-50 text-gray-600 uppercase text-sm tracking-wide">
             <tr>
               <th className="px-4 py-3 text-left">Agency Name</th>
+              <th className="px-4 py-3 text-left">Lead Name</th>
               <th className="px-4 py-3 text-left">Type</th>
               <th className="px-4 py-3 text-left">Email</th>
               <th className="px-4 py-3 text-left">Website</th>
@@ -187,6 +175,10 @@ export default function LeadTable() {
                 >
                   <td className="px-4 py-3 font-medium text-gray-800">
                     {lead.agency}
+                  </td>
+
+                  <td className="px-4 py-3 font-medium text-gray-800">
+                    {lead.name}
                   </td>
 
                   <td className="px-4 py-3 text-gray-600">{lead.type}</td>
@@ -229,7 +221,9 @@ export default function LeadTable() {
                       : "-"}
                   </td>
 
-                  <td className={`px-4 py-3 ${getDaysStyle(days)}`}>{days}</td>
+                  <td className={`px-4 py-3 text-black text-md font-bold`}>
+                    {days}
+                  </td>
 
                   <td className="px-4 py-3">
                     <div className="flex justify-center gap-2">
